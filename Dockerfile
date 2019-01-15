@@ -29,7 +29,7 @@ RUN apk update && \
       > /tmp/install-tl-unx/texlive.profile && \
     /tmp/install-tl-unx/install-tl -repository ctan -profile /tmp/install-tl-unx/texlive.profile && \
     tlmgr install \
-      latexmk inconsolata siunitx physics \
+      latexmk inconsolata bbm bbm-macros siunitx physics \
       biber biblatex biblatex-phys logreq && \
     rm -rf /tmp/install-tl-unx && \
     apk del --purge tl-unx && \
