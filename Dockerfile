@@ -23,11 +23,11 @@ RUN apk update && \
       "collection-latex 1" \
       "collection-latexrecommended 1" \
       "collection-latexextra 1" \
-      "option_doc 0" \
-      "option_src 0" \
+      "tlpdbopt_install_docfiles 0" \
+      "tlpdbopt_install_srcfiles 0" \
       "selected_scheme scheme-basic" \
       > /tmp/install-tl-unx/texlive.profile && \
-    /tmp/install-tl-unx/install-tl -profile /tmp/install-tl-unx/texlive.profile && \
+    /tmp/install-tl-unx/install-tl -repository ctan -profile /tmp/install-tl-unx/texlive.profile && \
     tlmgr install \
       latexmk inconsolata siunitx physics \
       biber biblatex biblatex-phys logreq && \
