@@ -15,8 +15,7 @@ RUN apk update && \
     wget -qO - http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz | \
     tar -xz -C /tmp/install-tl-unx --strip-components=1 && \
     printf "%s\n" \
-      "binary_x86_64-linux 1" \
-      "binary_x86_64-linuxmusl 0" \
+      "selected_scheme scheme-basic" \
       "collection-basic 1" \
       "collection-fontsrecommended 1" \
       "collection-langjapanese 1" \
@@ -25,12 +24,12 @@ RUN apk update && \
       "collection-latexextra 1" \
       "tlpdbopt_install_docfiles 0" \
       "tlpdbopt_install_srcfiles 0" \
-      "selected_scheme scheme-basic" \
       > /tmp/install-tl-unx/texlive.profile && \
-    /tmp/install-tl-unx/install-tl -repository ctan -profile /tmp/install-tl-unx/texlive.profile && \
-    tlmgr install \
-      latexmk inconsolata bbm bbm-macros siunitx physics \
-      biber biblatex biblatex-phys logreq && \
+    /tmp/install-tl-unx/install-tl \
+      -force-platform x86_64-linux \
+      -profile /tmp/install-tl-unx/texlive.profile && \
+    tlmgr option repository ctan && \
+    tlmgr install latexmk && \
     rm -rf /tmp/install-tl-unx && \
     apk del --purge tl-unx && \
     mkdir /workdir
