@@ -9,8 +9,8 @@ LABEL maintainer="Squary"
 ENV PATH /usr/local/texlive/2018/bin/x86_64-linux/:$PATH
 
 RUN apk update && \
-    apk add --no-cache perl bash && \
-    apk add --no-cache --virtual=tl-unx wget xz tar fontconfig && \
+    apk add --no-cache bash gnupg perl wget xz && \
+    apk add --no-cache --virtual=tl-unx tar fontconfig && \
     mkdir /tmp/install-tl-unx && \
     wget -qO - http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz | \
     tar -xz -C /tmp/install-tl-unx --strip-components=1 && \
