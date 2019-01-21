@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Squary
+# Copyright (c) 2018-2019 Squary
 # Released under the MIT license
 # https://opensource.org/licenses/MIT
 
@@ -31,18 +31,18 @@ RUN apk update && \
     tlmgr option repository ctan && \
     tlmgr install latexmk && \
     rm -rf /tmp/install-tl-unx && \
-    apk del --purge tl-unx && \
-    mkdir /workdir
+    apk del --purge tl-unx
 
-RUN mkdir -p \
-      "$(kpsewhich -var-value=TEXMFLOCAL)/fonts/opentype/google/notosanscjk" \
-      "$(kpsewhich -var-value=TEXMFLOCAL)/fonts/opentype/google/notoserifcjk" && \
-    wget -qP "$(kpsewhich -var-value=TEXMFLOCAL)/fonts/opentype/google/notosanscjk" \
+RUN cd $(kpsewhich -var-value=TEXMFLOCAL) && \
+    mkdir -p \
+      fonts/opentype/google/notosanscjk \
+      fonts/opentype/google/notoserifcjk && \
+    wget -qP fonts/opentype/google/notosanscjk \
       https://github.com/googlei18n/noto-cjk/raw/master/NotoSansCJK-Regular.ttc \
       https://github.com/googlei18n/noto-cjk/raw/master/NotoSansCJK-Medium.ttc \
       https://github.com/googlei18n/noto-cjk/raw/master/NotoSansCJK-Bold.ttc \
       https://github.com/googlei18n/noto-cjk/raw/master/NotoSansCJK-Black.ttc && \
-    wget -qP "$(kpsewhich -var-value=TEXMFLOCAL)/fonts/opentype/google/notoserifcjk" \
+    wget -qP fonts/opentype/google/notoserifcjk \
       https://github.com/googlei18n/noto-cjk/raw/master/NotoSerifCJK-Light.ttc \
       https://github.com/googlei18n/noto-cjk/raw/master/NotoSerifCJK-Regular.ttc \
       https://github.com/googlei18n/noto-cjk/raw/master/NotoSerifCJK-Bold.ttc && \
