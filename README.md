@@ -7,7 +7,7 @@
     - gnupg, wget, xz
 
 ## TeX Live configuration
-- basic scheme with below collections
+- basic scheme with following collections
     - basic, latex, latexrecommended, latexextra, fontsrecommended, langjapanese
 - others
     - latexmk
